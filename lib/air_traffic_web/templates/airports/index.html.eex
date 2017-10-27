@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <h2>Airports status report</h2>
+    <hr/>
+  <%= for {airport, status} <- @airports do %>
+    <b><%= airport %></b>:
+    <br>
+    <%= inspect status %>
+
+    <hr/>
+  <% end %>
+  <form method="POST" action="/airports">
+    <input name="_csrf_token" value="<%= get_csrf_token(@conn) %>" type="hidden">
+    <div class="form-group">
+      <label>Airport Name</label>
+      <input type="text" name="airport" id="airport" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Number of Landing Strips</label>
+      <input type="number" name="landing_strips" id="landing_strips" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <%= submit "Create Airport", class: "btn btn-primary" %>
+    </div>
+  </form>
+
+  <hr/>
+  <form method="POST" action="/send_planes">
+    <input name="_csrf_token" value="<%= get_csrf_token(@conn) %>" type="hidden">
+
+    <div class="form-group">
+      <label>Number of Planes</label>
+      <input type="number" name="number_of_planes" id="number_of_planes" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <%= submit "Send Planes", class: "btn btn-primary" %>
+    </div>
+  </form>
+
+</div>
