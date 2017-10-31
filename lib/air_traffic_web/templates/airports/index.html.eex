@@ -38,5 +38,5 @@
       <%= submit "Send Planes", class: "btn btn-primary" %>
     </div>
   </form>
-
 </div>
+<div class="event-list"></div>

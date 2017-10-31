@@ -18,7 +18,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :air_elixir, airports: [{:budapest, 2}, {:dublin, 4}, {:vilnius, 1}, {:london, 7}, {:rome, 3}, {:berlin, 4}, {:barcelona, 6}]
+config :air_elixir,
+          airports: [{:budapest, 2}, {:dublin, 4}, {:vilnius, 1}, {:london, 7}, {:rome, 3}, {:berlin, 4}, {:barcelona, 6}],
+          output_function: fn(msg) -> AirTrafficWeb.Endpoint.broadcast("planes:messages", "new-event", %{message: msg}) end
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

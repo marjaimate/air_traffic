@@ -2,7 +2,7 @@ defmodule AirTrafficWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", AirTrafficWeb.RoomChannel
+  channel "planes:*", AirTrafficWeb.PlaneChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
