@@ -41,7 +41,7 @@ defmodule AirTraffic.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:air_elixir, git: "git@github.com:marjaimate/air_elixir.git", branch: "master"}
+      {:air_elixir, git: "git@github.com:marjaimate/air_elixir.git", branch: "webfront"}
     ]
   end
 
