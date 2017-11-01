@@ -26,7 +26,7 @@
   </form>
 
   <hr/>
-  <form method="POST" action="/send_planes">
+  <form data-remote="true" method="POST" action="/send_planes">
     <input name="_csrf_token" value="<%= get_csrf_token(@conn) %>" type="hidden">
 
     <div class="form-group">
@@ -39,4 +39,4 @@
     </div>
   </form>
 </div>
-<div class="event-list"></div>
+<ul class="event-list list-group"></ul>

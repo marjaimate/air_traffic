@@ -61,7 +61,7 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) });
 
 channel.on('new-event', payload => {
-      $(".event-list").append(payload.message);
+      $(".event-list").append(`<li class="list-group-item">${payload.message}</li>`);
 });
 
 export default socket;

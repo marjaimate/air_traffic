@@ -28,8 +28,7 @@ defmodule AirTrafficWeb.AirportsController do
       |> land_planes
 
     conn
-    |> assign(:airports, get_airports)
-    |> render("index.html")
+    |> send_resp(201, "")
   end
 
   ### Private ###
