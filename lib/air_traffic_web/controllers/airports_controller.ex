@@ -13,8 +13,7 @@ defmodule AirTrafficWeb.AirportsController do
 
   def open_new(conn, %{"airport" => name, "landing_strips" => landing_strips} = params) do
     airport = String.to_atom(name)
-    TowerSupervisor.start_control_tower(airport)
-    open_landing_strips(airport, String.to_integer(landing_strips))
+    TowerSupervisor.start_control_tower(airport, landing_strips)
 
     conn |> redirect(to: "/airports")
   end
@@ -36,14 +35,6 @@ defmodule AirTrafficWeb.AirportsController do
     Supervisor.which_children(TowerSupervisor)
       |> Enum.map(fn {_, pid, _, _ } -> pid end)
       |> Enum.map(&( { :proplists.get_value(:registered_name, Process.info(&1)), ControlTower.status(&1) } ))
-  end
-
-
-  defp open_landing_strips(airport, n), do: open_landing_strips(airport, n, [])
-
-  defp open_landing_strips(_airport, 0, acc), do: acc
-  defp open_landing_strips(airport, n, acc) do
-    open_landing_strips(airport, n-1, acc ++ [ControlTower.open_landing_strip(airport)])
   end
 
 
